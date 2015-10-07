@@ -13,15 +13,14 @@ enum State { case Scene, Title, Notes }
 class ViewController: UIViewController, GraphSceneDelegate, UITextFieldDelegate {
 
     var state : State!
-    var scene : GraphScene!
 
+    @IBOutlet weak var scene: GraphScene?
     @IBOutlet weak var titleTextField: UITextField?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         state = State.Scene
-        scene = view as! GraphScene
-        scene.delegate = self
+        scene!.titleDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,14 +43,14 @@ class ViewController: UIViewController, GraphSceneDelegate, UITextFieldDelegate 
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         print(textField.text)
-        if let node = scene.newestNode {
-            node.title = textField.text
+        if let nodeView = scene!.newestNodeView {
+            nodeView.title = textField.text
         }
-        scene.setNeedsDisplay()
+        scene!.setNeedsDisplay()
+        scene!.becomeFirstResponder()
         textField.text = ""
-        textField.resignFirstResponder()
         textField.hidden = true
-        view.userInteractionEnabled = true
+        scene!.userInteractionEnabled = true
         return false
     }
 }

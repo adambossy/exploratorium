@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Exploratorium/GraphScene.swift"
-            timestampString = "465945953.499904"
+            timestampString = "465950284.387883"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "scrollViewDidZoom(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Exploratorium/GraphScene.swift"
-            timestampString = "465945953.499904"
+            timestampString = "466015656.973041"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "awakeFromNib()"
             landmarkType = "5">
          </BreakpointContent>

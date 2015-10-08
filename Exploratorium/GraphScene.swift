@@ -49,15 +49,17 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
     }
 
     override func awakeFromNib() {
+        super.awakeFromNib()
+
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         let containerSize = CGSizeMake(
             screenSize.width * 2,
             screenSize.height * 2)
 
-        self.contentOffset = CGPointMake(
-            -self.frame.width,
-            -self.frame.height)
         self.contentSize = containerSize
+        self.contentOffset = CGPointMake(
+            (containerSize.width / 2) - (screenSize.width / 2),
+            (containerSize.height / 2) - (screenSize.height / 2))
 
         containerView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size:containerSize))
         containerView.backgroundColor = UIColor.whiteColor()
@@ -67,15 +69,13 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
         maximumZoomScale = 5.0
         zoomScale = 1.0
         
-        centerContainerView()
-
-        super.awakeFromNib()
+//        centerContainerView()
     }
-
+/*
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
     }
-    
+*/  
     override func setNeedsDisplay() {
         super.setNeedsDisplay()
         newestNodeView?.setNeedsDisplay()
@@ -86,7 +86,7 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
     }
 
     func scrollViewDidZoom(scrollView: UIScrollView) {
-        println(String(format: "zoomScale: %.5f", zoomScale))
+        println(String(format: "zoomScale: %.5f bounds width: %.5f height %.5f offset x %.5f y %.5f", zoomScale, containerView.frame.size.width, containerView.frame.size.height, self.contentOffset.x, self.contentOffset.y))
 //        centerContainerView()
     }
     
@@ -100,14 +100,10 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
         
         if contentsFrame.size.width < boundsSize.width {
             contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0
-        } else {
-            contentsFrame.origin.x = 0.0
         }
         
         if contentsFrame.size.height < boundsSize.height {
             contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0
-        } else {
-            contentsFrame.origin.y = 0.0
         }
         
         containerView.frame = contentsFrame

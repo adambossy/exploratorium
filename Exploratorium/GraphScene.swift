@@ -1,5 +1,5 @@
 //
-//  GraphScene.swift
+//  GraphView.swift
 //  Exploratorium
 //
 //  Created by Adam Bossy on 9/28/15.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol GraphSceneDelegate {
+protocol GraphViewDelegate {
     func editTitle()
 }
 
-class GraphScene: UIScrollView, UIScrollViewDelegate {
+class GraphView: UIScrollView, UIScrollViewDelegate {
 
     let RGB_VALUES : [(CGFloat, CGFloat, CGFloat)] = [
         (68, 105, 61),
@@ -38,7 +38,7 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
         (101, 141, 27)
         ]
     var graph : [NodeView: [NodeView]]
-    var titleDelegate : GraphSceneDelegate!
+    var titleDelegate : GraphViewDelegate!
     var newestNodeView : NodeView?
     var containerView : UIView!
 
@@ -66,13 +66,36 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
         containerView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size:containerSize))
         containerView.backgroundColor = UIColor.whiteColor()
         self.addSubview(containerView)
-/*
-        let titleRect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: screenSize.width, height: 22))
-        let titleLabel = UILabel(frame: titleRect)
-        titleLabel.text = "Exploratorium"
-        // ???
-        titleLabel.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: CenterX, relatedBy: <#NSLayoutRelation#>, toItem: <#AnyObject?#>, attribute: <#NSLayoutAttribute#>, multiplier: <#CGFloat#>, constant: <#CGFloat#>)))
-*/
+
+        // TODO: Move to IB. Come back to this later.
+//        let titleRect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: screenSize.width, height: 22))
+//        let titleLabel = UILabel(frame: titleRect)
+//        titleLabel.text = "Exploratorium"
+//        titleLabel.numberOfLines = 0
+//        titleLabel.font = .boldSystemFontOfSize(36.0)
+//        titleLabel.shadowColor = .lightGrayColor()
+//        titleLabel.shadowOffset = CGSize(width: 0, height: 1)
+//        titleLabel.alpha = 0.25
+//        titleLabel.sizeToFit()
+//        titleLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+//        containerView.addSubview(titleLabel)
+//        containerView.addConstraint(NSLayoutConstraint(
+//            item: titleLabel,
+//            attribute: .CenterX,
+//            relatedBy: .Equal,
+//            toItem: containerView,
+//            attribute: .CenterX,
+//            multiplier: 1,
+//            constant: 0))
+//        containerView.addConstraint(NSLayoutConstraint(
+//            item: titleLabel,
+//            attribute: .CenterY,
+//            relatedBy: .Equal,
+//            toItem: containerView,
+//            attribute: .CenterY,
+//            multiplier: 1,
+//            constant: 0))
+
         // NOTE: Zooming in not interesting, zooming out is. Fix scale to reflect that.
         minimumZoomScale = 0.1
         maximumZoomScale = 5.0

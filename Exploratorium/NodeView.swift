@@ -40,11 +40,6 @@ class NodeView : UIView {
                 self.frame = targetFrame
             },
             completion: { (finished: Bool) in })
-        /*
-        UIView.animateWithDuration(0.5, animations: {
-            self.frame = targetFrame
-        })
-        */
         self.backgroundColor = UIColor.clearColor()
     }
 
@@ -52,10 +47,7 @@ class NodeView : UIView {
         fatalError("NSCoding not supported")
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
+
     override func drawRect(rect: CGRect) {
         let nodeRect = CGRect(
             x: (LINE_WIDTH / 2),

@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7k9-wH-xOZ" customClass="GraphScene" customModule="Exploratorium" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7k9-wH-xOZ" userLabel="Graph View" customClass="GraphView" customModule="Exploratorium" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -46,7 +46,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="scene" destination="7k9-wH-xOZ" id="PzW-uT-hh3"/>
+                        <outlet property="graphView" destination="7k9-wH-xOZ" id="ARx-vi-Off"/>
                         <outlet property="titleTextField" destination="x1p-oV-WvL" id="rJ2-4a-vRS"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="3ST-bW-dh2"/>
                     </connections>

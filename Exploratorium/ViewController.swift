@@ -8,32 +8,14 @@
 
 import UIKit
 
-enum State { case Scene, Title, Notes }
+class ViewController: UIViewController, GraphViewDelegate, UITextFieldDelegate {
 
-class ViewController: UIViewController, GraphSceneDelegate, UITextFieldDelegate {
-
-    var state : State!
-
-    @IBOutlet weak var scene: GraphScene?
+    @IBOutlet weak var graphView: GraphView?
     @IBOutlet weak var titleTextField: UITextField?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        state = State.Scene
-        scene!.titleDelegate = self
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        if state == State.Scene {
-            // propagate
-        } else {
-            
-        }
+        graphView!.titleDelegate = self
     }
 
     func editTitle() { // callback
@@ -42,14 +24,14 @@ class ViewController: UIViewController, GraphSceneDelegate, UITextFieldDelegate 
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if let nodeView = scene!.newestNodeView {
+        if let nodeView = graphView!.newestNodeView {
             nodeView.title = textField.text
         }
-        scene!.setNeedsDisplay()
-        scene!.becomeFirstResponder()
+        graphView!.setNeedsDisplay()
+        graphView!.userInteractionEnabled = true
+        graphView!.becomeFirstResponder()
         textField.text = ""
         textField.hidden = true
-        scene!.userInteractionEnabled = true
         return false
     }
 }

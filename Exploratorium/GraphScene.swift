@@ -40,7 +40,9 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
     var graph : [NodeView: [NodeView]]
     var titleDelegate : GraphSceneDelegate!
     var newestNodeView : NodeView?
-    var containerView: UIView!
+    var containerView : UIView!
+
+//    @IBOutlet weak var containerView: UIView!
 
     required init(coder aDecoder: NSCoder) {
         graph = [NodeView: [NodeView]]()
@@ -53,8 +55,8 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
 
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         let containerSize = CGSizeMake(
-            screenSize.width * 2,
-            screenSize.height * 2)
+            screenSize.width * 10,
+            screenSize.height * 10)
 
         self.contentSize = containerSize
         self.contentOffset = CGPointMake(
@@ -64,18 +66,21 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
         containerView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size:containerSize))
         containerView.backgroundColor = UIColor.whiteColor()
         self.addSubview(containerView)
-
-        minimumZoomScale = 0.5
+/*
+        let titleRect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: screenSize.width, height: 22))
+        let titleLabel = UILabel(frame: titleRect)
+        titleLabel.text = "Exploratorium"
+        // ???
+        titleLabel.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: CenterX, relatedBy: <#NSLayoutRelation#>, toItem: <#AnyObject?#>, attribute: <#NSLayoutAttribute#>, multiplier: <#CGFloat#>, constant: <#CGFloat#>)))
+*/
+        // NOTE: Zooming in not interesting, zooming out is. Fix scale to reflect that.
+        minimumZoomScale = 0.1
         maximumZoomScale = 5.0
         zoomScale = 1.0
         
 //        centerContainerView()
     }
-/*
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
-    }
-*/  
+
     override func setNeedsDisplay() {
         super.setNeedsDisplay()
         newestNodeView?.setNeedsDisplay()
@@ -87,7 +92,10 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
 
     func scrollViewDidZoom(scrollView: UIScrollView) {
         println(String(format: "zoomScale: %.5f bounds width: %.5f height %.5f offset x %.5f y %.5f", zoomScale, containerView.frame.size.width, containerView.frame.size.height, self.contentOffset.x, self.contentOffset.y))
-//        centerContainerView()
+          // NOTE: Hard to do without glitchiness. Figure out later.
+//        if (zoomScale < minimumZoomScale) {
+//            centerContainerView()
+//        }
     }
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView!, atScale scale: CGFloat) {
@@ -109,11 +117,10 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
         containerView.frame = contentsFrame
     }
 
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    @IBAction func longTap(sender: UILongPressGestureRecognizer) {
         userInteractionEnabled = false
-        for touch in touches {
-            let touch_ = touch as! UITouch
-            let location = touch_.locationInView(containerView)
+        if (UIGestureRecognizerState.Began == sender.state) {
+            let location = sender.locationOfTouch(0, inView: containerView)
             let index = Int(arc4random_uniform(UInt32(RGB_VALUES.count)))
             let color = UIColor(
                 red: RGB_VALUES[index].0 / 255.0,
@@ -124,6 +131,7 @@ class GraphScene: UIScrollView, UIScrollViewDelegate {
             graph[nodeView] = [NodeView]()
             newestNodeView = nodeView
             containerView.addSubview(nodeView)
+            println("Created node! Tiny Rick!")
         }
         titleDelegate.editTitle()
     }

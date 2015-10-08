@@ -21,16 +21,39 @@ class NodeView : UIView {
     init(x: CGFloat, y: CGFloat, title: String?, color: UIColor) {
         self.title = title
         self.color = color
-        super.init(frame: CGRect(
+
+        let initFrame = CGRect(x: x + (NODE_SIZE / 2), y: y + (NODE_SIZE / 2), width: 1, height: 1)
+        super.init(frame: initFrame)
+
+        let targetFrame = CGRect(
             x: x - (LINE_WIDTH / 2),
             y: y - (LINE_WIDTH / 2),
             width: NODE_SIZE + LINE_WIDTH,
-            height: NODE_SIZE + TEXT_MARGIN + TEXT_HEIGHT + LINE_WIDTH))
+            height: NODE_SIZE + TEXT_MARGIN + TEXT_HEIGHT + LINE_WIDTH)
+        UIView.animateWithDuration(
+            0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.2,
+            initialSpringVelocity: 0.0,
+            options: .CurveEaseInOut,
+            animations: {
+                self.frame = targetFrame
+            },
+            completion: { (finished: Bool) in })
+        /*
+        UIView.animateWithDuration(0.5, animations: {
+            self.frame = targetFrame
+        })
+        */
         self.backgroundColor = UIColor.clearColor()
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
     
     override func drawRect(rect: CGRect) {

@@ -42,7 +42,6 @@ class ViewController: UIViewController, GraphSceneDelegate, UITextFieldDelegate 
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print(textField.text)
         if let nodeView = scene!.newestNodeView {
             nodeView.title = textField.text
         }

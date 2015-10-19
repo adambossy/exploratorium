@@ -37,7 +37,7 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
         (100, 167, 11),
         (101, 141, 27)
         ]
-    var graph : [NodeView: [NodeView]]
+//    var graph : [NodeView: [NodeView]]
     var titleDelegate : GraphViewDelegate!
     var newestNodeView : NodeView?
     var containerView : UIView!
@@ -45,7 +45,7 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
 //    @IBOutlet weak var containerView: UIView!
 
     required init(coder aDecoder: NSCoder) {
-        graph = [NodeView: [NodeView]]()
+//        graph = [NodeView: [NodeView]]()
         super.init(coder: aDecoder)
         delegate = self
     }
@@ -151,7 +151,7 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
                 blue: RGB_VALUES[index].2 / 255.0,
                 alpha: 1.0)
             let nodeView = NodeView(x: location.x - 50, y: location.y - 50, title: nil, color: color)
-            graph[nodeView] = [NodeView]()
+//            graph[nodeView] = [NodeView]()
             newestNodeView = nodeView
             containerView.addSubview(nodeView)
             println("Created node! Tiny Rick!")

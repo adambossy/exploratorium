@@ -49,6 +49,7 @@
                         <outlet property="graphView" destination="7k9-wH-xOZ" id="ARx-vi-Off"/>
                         <outlet property="titleTextField" destination="x1p-oV-WvL" id="rJ2-4a-vRS"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="3ST-bW-dh2"/>
+                        <segue destination="IHM-dz-MQl" kind="show" identifier="ShowNotes" id="Ndu-YK-pMq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -57,6 +58,19 @@
                         <action selector="longTap:" destination="7k9-wH-xOZ" id="U16-fc-kqP"/>
                     </connections>
                 </pongPressGestureRecognizer>
+            </objects>
+        </scene>
+        <!--Notes View Controller-->
+        <scene sceneID="24q-op-8UN">
+            <objects>
+                <viewController id="IHM-dz-MQl" customClass="NotesViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1U7-uL-4vx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tableView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vPj-fc-2hZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>

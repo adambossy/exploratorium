@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol GraphViewDelegate {
-    func editTitle()
+protocol NodeCreatedDelegate {
+    func nodeCreated(#node: NodeView)
 }
 
 class GraphView: UIScrollView, UIScrollViewDelegate {
@@ -38,7 +38,7 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
         (101, 141, 27)
         ]
 
-    var titleDelegate : GraphViewDelegate!
+    var nodeCreatedDelegate : NodeCreatedDelegate!
     var newestNodeView : NodeView?
     var containerView : UIView!
 
@@ -90,10 +90,11 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
                 blue: RGB_VALUES[index].2 / 255.0,
                 alpha: 1.0)
             let nodeView = NodeView(x: location.x - 50, y: location.y - 50, title: nil, color: color)
+//            nodeView.delegate = nodeCreatedDelegate // Seems hacky
             newestNodeView = nodeView
             containerView.addSubview(nodeView)
             println("Created node! Tiny Rick!")
+            nodeCreatedDelegate.nodeCreated(node: nodeView)
         }
-        titleDelegate.editTitle()
     }
 }

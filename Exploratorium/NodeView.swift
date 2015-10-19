@@ -8,15 +8,20 @@
 
 import UIKit
 
+protocol NodeTapDelegate {
+    func nodeTapped(node: NodeView)
+}
+
 class NodeView : UIView {
 
     let NODE_SIZE = CGFloat(80.0)
     let TEXT_MARGIN = CGFloat(10.0)
     let TEXT_HEIGHT = CGFloat(22.0)
     let LINE_WIDTH = CGFloat(6.0)
+    let color : UIColor
 
     var title : String!
-    let color : UIColor
+    var delegate : NodeTapDelegate? // Should be weak but Xcode won't let me
 
     init(x: CGFloat, y: CGFloat, title: String?, color: UIColor) {
         self.title = title
@@ -72,5 +77,10 @@ class NodeView : UIView {
         let titleRect = CGRectMake(0, NODE_SIZE + LINE_WIDTH + TEXT_MARGIN, NODE_SIZE + LINE_WIDTH, TEXT_HEIGHT)
         self.title?.drawInRect(titleRect, withAttributes: titleAttributes)
     }
-    
+
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        if let d = delegate {
+            d.nodeTapped(self)
+        }
+    }
 }

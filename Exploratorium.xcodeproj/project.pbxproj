@@ -10,7 +10,7 @@
 		66628B811BC7160A008EC731 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66628B801BC7160A008EC731 /* NotesViewController.swift */; };
 		66A205791BC4E75900E0E044 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A205781BC4E75900E0E044 /* NodeView.swift */; };
 		66EFD0401BB8AAD7003B98C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EFD03F1BB8AAD7003B98C0 /* AppDelegate.swift */; };
-		66EFD0421BB8AAD7003B98C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EFD0411BB8AAD7003B98C0 /* ViewController.swift */; };
+		66EFD0421BB8AAD7003B98C0 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EFD0411BB8AAD7003B98C0 /* GraphViewController.swift */; };
 		66EFD0451BB8AAD7003B98C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66EFD0431BB8AAD7003B98C0 /* Main.storyboard */; };
 		66EFD0471BB8AAD7003B98C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66EFD0461BB8AAD7003B98C0 /* Images.xcassets */; };
 		66EFD04A1BB8AAD7003B98C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EFD0481BB8AAD7003B98C0 /* LaunchScreen.xib */; };
@@ -34,7 +34,7 @@
 		66EFD03A1BB8AAD7003B98C0 /* Exploratorium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exploratorium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66EFD03E1BB8AAD7003B98C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66EFD03F1BB8AAD7003B98C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		66EFD0411BB8AAD7003B98C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		66EFD0411BB8AAD7003B98C0 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		66EFD0441BB8AAD7003B98C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		66EFD0461BB8AAD7003B98C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		66EFD0491BB8AAD7003B98C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 				66EFD0461BB8AAD7003B98C0 /* Images.xcassets */,
 				66EFD0481BB8AAD7003B98C0 /* LaunchScreen.xib */,
 				66EFD03F1BB8AAD7003B98C0 /* AppDelegate.swift */,
-				66EFD0411BB8AAD7003B98C0 /* ViewController.swift */,
+				66EFD0411BB8AAD7003B98C0 /* GraphViewController.swift */,
 				66628B801BC7160A008EC731 /* NotesViewController.swift */,
 				66EFD0931BBA5F49003B98C0 /* GraphView.swift */,
 				66A205781BC4E75900E0E044 /* NodeView.swift */,
@@ -224,7 +224,7 @@
 			files = (
 				66EFD0941BBA5F49003B98C0 /* GraphView.swift in Sources */,
 				66628B811BC7160A008EC731 /* NotesViewController.swift in Sources */,
-				66EFD0421BB8AAD7003B98C0 /* ViewController.swift in Sources */,
+				66EFD0421BB8AAD7003B98C0 /* GraphViewController.swift in Sources */,
 				66A205791BC4E75900E0E044 /* NodeView.swift in Sources */,
 				66EFD0401BB8AAD7003B98C0 /* AppDelegate.swift in Sources */,
 			);

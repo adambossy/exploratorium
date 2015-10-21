@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotesViewController : UITableViewController {
+class NotesViewController : UITableViewController { //, UIViewControllerTransitioningDelegate {
 
     var node: NodeView! // NOTE: Ugh. It's hacky that the nodeView acts as the model.
     @IBOutlet weak var navigationBar : UINavigationBar!
@@ -39,4 +39,9 @@ class NotesViewController : UITableViewController {
 
         return cell
     }
+    
+    // ***
+    // UIViewControllerTransitioningDelegate
+//    
+//    
 }

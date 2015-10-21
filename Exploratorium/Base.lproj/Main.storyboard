@@ -49,7 +49,7 @@
                         <outlet property="graphView" destination="7k9-wH-xOZ" id="ARx-vi-Off"/>
                         <outlet property="titleTextField" destination="x1p-oV-WvL" id="rJ2-4a-vRS"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="3ST-bW-dh2"/>
-                        <segue destination="IHM-dz-MQl" kind="show" identifier="ShowNotes" id="Ndu-YK-pMq"/>
+                        <segue destination="IHM-dz-MQl" kind="custom" identifier="ShowNotes" id="Ndu-YK-pMq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

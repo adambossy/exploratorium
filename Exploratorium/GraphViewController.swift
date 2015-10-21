@@ -10,6 +10,8 @@ import UIKit
 
 class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegate, NodeCreatedDelegate {
 
+    let notesTransitionAnimator = NotesTransitionAnimator()
+    
     var selectedNode: NodeView?
 
     @IBOutlet weak var graphView: GraphView!
@@ -20,6 +22,11 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
         graphView.nodeCreatedDelegate = self
     }
 
+    // we override this method to manage what style status bar is shown
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return self.presentingViewController == nil ? UIStatusBarStyle.Default : UIStatusBarStyle.LightContent
+    }
+    
     // ***
     // MARK: Title editing
     
@@ -46,6 +53,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
     
     func nodeTapped(node: NodeView) {
         selectedNode = node
+        
         performSegueWithIdentifier("ShowNotes", sender: nil)
     }
     
@@ -57,7 +65,25 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
             }
         }
     }
-
-
 }
+
+//extension GraphViewController: UIViewControllerTransitioningDelegate {
+//    func animateTransition() {
+//
+//    }
+//
+//    func transitionDuration () {
+//        return 0.5
+//    }
+//
+//    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return self
+//    }
+//    
+//    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return self
+//        
+//    }
+//}
+
 

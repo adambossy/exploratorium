@@ -8,39 +8,52 @@
 
 import UIKit
 
-class NotesTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
+class NotesTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
-    var presenting = Bool()
+    var presenting  = true
+    var originFrame = CGRect.zeroRect
 
     // animate a change from one viewcontroller to another
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
         // get reference to our fromView, toView and the container view that we should perform the transition in
         let container = transitionContext.containerView()
-        let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
-        let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
-        
-        let π : CGFloat = 3.14159265359
+        container.backgroundColor = UIColor.clearColor() // Remove black background
 
-        // set up from 2D transforms that we'll use in the animation
-        let offScreenRotateIn = CGAffineTransformMakeRotation(-π/2)
-        let offScreenRotateOut = CGAffineTransformMakeRotation(π/2)
+        let notesView = transitionContext.viewForKey(presenting ? UITransitionContextToViewKey : UITransitionContextFromViewKey)!
+        let graphView = transitionContext.viewForKey(presenting ? UITransitionContextFromViewKey : UITransitionContextToViewKey)!
         
-        // start the toView to the right of the screen
-        toView.transform = self.presenting ? offScreenRotateIn : offScreenRotateOut
+        let initialFrame = presenting ? originFrame : notesView.frame
+        let finalFrame = presenting ? notesView.frame : originFrame
 
-        // set the anchor point so that rotations happen from the top-left corner
-        toView.layer.anchorPoint = CGPoint(x:0, y:0)
-        fromView.layer.anchorPoint = CGPoint(x:0, y:0)
+        let xScaleFactor = presenting ?
+          initialFrame.width / finalFrame.width :
+          finalFrame.width / initialFrame.width
+         
+        let yScaleFactor = presenting ?
+          initialFrame.height / finalFrame.height :
+          finalFrame.height / initialFrame.height
         
-        // updating the anchor point also moves the position to we have to move the center position to the top-left to compensate
-        toView.layer.position = CGPoint(x:0, y:0)
-        fromView.layer.position = CGPoint(x:0, y:0)
+        let scaleTransform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor)
 
-        // add the both views to our view controller
-        container.addSubview(toView)
-        container.addSubview(fromView)
-        
+        if presenting {
+            notesView.transform = scaleTransform
+            notesView.center = CGPoint(
+                x: CGRectGetMidX(initialFrame),
+                y: CGRectGetMidY(initialFrame))
+            notesView.clipsToBounds = true
+            notesView.alpha = 0.0
+        } else {
+            notesView.alpha = 1.0
+        }
+
+        if !presenting {
+            container.addSubview(graphView)
+        }
+
+        container.addSubview(notesView)
+        container.bringSubviewToFront(notesView)
+
         // get the duration of the animation
         // DON'T just type '0.5s' -- the reason why won't make sense until the next post
         // but for now it's important to just follow this approach
@@ -52,8 +65,11 @@ class NotesTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning, 
         // we also use the block animation usingSpringWithDamping for a little bounce
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: nil, animations: {
             
-            fromView.transform = self.presenting ? offScreenRotateIn : offScreenRotateOut
-            toView.transform = CGAffineTransformIdentity
+            notesView.transform = self.presenting ? CGAffineTransformIdentity : scaleTransform
+            notesView.center = CGPoint(x: CGRectGetMidX(finalFrame),
+                y: CGRectGetMidY(finalFrame))
+            notesView.alpha = self.presenting ? 1.0 : 0.0
+
             
             }, completion: { finished in
                 
@@ -65,16 +81,7 @@ class NotesTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning, 
     }
 
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-        return 0.5
+        return 1
     }
     
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        self.presenting = true
-        return self
-    }
-    
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        self.presenting = false
-        return self
-    }
 }

@@ -76,7 +76,11 @@
                             </textAttributes>
                             <items>
                                 <navigationItem title="Title" id="usz-4p-NQi">
-                                    <barButtonItem key="backBarButtonItem" title="Back" width="200" id="rf2-Dd-4Dn"/>
+                                    <barButtonItem key="leftBarButtonItem" title="Back" id="L2n-NJ-Pcq">
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="DismissNotes" customClass="DismissSegue" customModule="Exploratorium" customModuleProvider="target" id="1fb-tQ-18Y"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </navigationItem>
                             </items>
                         </navigationBar>

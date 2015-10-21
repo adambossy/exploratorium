@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegate, NodeCreatedDelegate {
+class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegate, NodeCreatedDelegate, UIViewControllerTransitioningDelegate {
 
     let notesTransitionAnimator = NotesTransitionAnimator()
     
@@ -26,7 +26,23 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return self.presentingViewController == nil ? UIStatusBarStyle.Default : UIStatusBarStyle.LightContent
     }
+
+    // ***
+    // MARK: UIViewControllerTransitioningDelegate methods
     
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let n = selectedNode {
+            notesTransitionAnimator.originFrame = n.superview!.convertRect(n.frame, toView: nil)
+        }
+        notesTransitionAnimator.presenting = true
+        return notesTransitionAnimator
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        notesTransitionAnimator.presenting = false
+        return notesTransitionAnimator
+    }
+
     // ***
     // MARK: Title editing
     
@@ -53,7 +69,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
     
     func nodeTapped(node: NodeView) {
         selectedNode = node
-        
         performSegueWithIdentifier("ShowNotes", sender: nil)
     }
     
@@ -62,7 +77,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
             if let n = selectedNode {
                 let notesViewController = segue.destinationViewController as! NotesViewController
                 notesViewController.node = selectedNode
-                notesViewController.transitioningDelegate = self.notesTransitionAnimator
+                notesViewController.transitioningDelegate = self
             }
         }
     }

@@ -10,6 +10,7 @@
 		66628B811BC7160A008EC731 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66628B801BC7160A008EC731 /* NotesViewController.swift */; };
 		66A205791BC4E75900E0E044 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A205781BC4E75900E0E044 /* NodeView.swift */; };
 		66AFDB8E1BD83DA60038EE8F /* NotesTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AFDB8D1BD83DA60038EE8F /* NotesTransitionAnimator.swift */; };
+		66AFDB901BD857030038EE8F /* DismissSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AFDB8F1BD857030038EE8F /* DismissSegue.swift */; };
 		66EFD0401BB8AAD7003B98C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EFD03F1BB8AAD7003B98C0 /* AppDelegate.swift */; };
 		66EFD0421BB8AAD7003B98C0 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EFD0411BB8AAD7003B98C0 /* GraphViewController.swift */; };
 		66EFD0451BB8AAD7003B98C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66EFD0431BB8AAD7003B98C0 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		66628B801BC7160A008EC731 /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		66A205781BC4E75900E0E044 /* NodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
 		66AFDB8D1BD83DA60038EE8F /* NotesTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotesTransitionAnimator.swift; path = ../NotesTransitionAnimator.swift; sourceTree = "<group>"; };
+		66AFDB8F1BD857030038EE8F /* DismissSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissSegue.swift; sourceTree = "<group>"; };
 		66EFD03A1BB8AAD7003B98C0 /* Exploratorium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exploratorium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66EFD03E1BB8AAD7003B98C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66EFD03F1BB8AAD7003B98C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				66AFDB8D1BD83DA60038EE8F /* NotesTransitionAnimator.swift */,
 				66EFD0931BBA5F49003B98C0 /* GraphView.swift */,
 				66A205781BC4E75900E0E044 /* NodeView.swift */,
+				66AFDB8F1BD857030038EE8F /* DismissSegue.swift */,
 				66EFD03D1BB8AAD7003B98C0 /* Supporting Files */,
 			);
 			path = Exploratorium;
@@ -227,6 +230,7 @@
 			files = (
 				66EFD0941BBA5F49003B98C0 /* GraphView.swift in Sources */,
 				66AFDB8E1BD83DA60038EE8F /* NotesTransitionAnimator.swift in Sources */,
+				66AFDB901BD857030038EE8F /* DismissSegue.swift in Sources */,
 				66628B811BC7160A008EC731 /* NotesViewController.swift in Sources */,
 				66EFD0421BB8AAD7003B98C0 /* GraphViewController.swift in Sources */,
 				66A205791BC4E75900E0E044 /* NodeView.swift in Sources */,

@@ -39,7 +39,13 @@ class NotesViewController : UITableViewController { //, UIViewControllerTransiti
 
         return cell
     }
-    
+/*
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "DismissNotes" {
+            self.transitioningDelegate = self
+        }
+    }
+*/
     // ***
     // UIViewControllerTransitioningDelegate
 //    

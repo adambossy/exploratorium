@@ -62,6 +62,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
             if let n = selectedNode {
                 let notesViewController = segue.destinationViewController as! NotesViewController
                 notesViewController.node = selectedNode
+                notesViewController.transitioningDelegate = self.notesTransitionAnimator
             }
         }
     }

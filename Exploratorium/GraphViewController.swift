@@ -16,10 +16,20 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
 
     @IBOutlet weak var graphView: GraphView!
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var titleTextFieldBottomConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         graphView.nodeCreatedDelegate = self
+    }
+
+    func keyboardWillShow(notification: NSNotification) {
+        let keyboardFrame = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.titleTextFieldBottomConstraint.constant = -1 * keyboardFrame.size.height
+        })
     }
 
     // we override this method to manage what style status bar is shown
@@ -56,11 +66,12 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
         if let nodeView = graphView!.newestNodeView {
             nodeView.title = textField.text
         }
-        graphView.setNeedsDisplay()
-        graphView.userInteractionEnabled = true
-        graphView.becomeFirstResponder()
         textField.text = ""
         textField.hidden = true
+        textField.endEditing(true)
+        graphView.becomeFirstResponder()
+        graphView.setNeedsDisplay()
+        graphView.userInteractionEnabled = true
         return false
     }
 
@@ -82,24 +93,4 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
         }
     }
 }
-
-//extension GraphViewController: UIViewControllerTransitioningDelegate {
-//    func animateTransition() {
-//
-//    }
-//
-//    func transitionDuration () {
-//        return 0.5
-//    }
-//
-//    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        return self
-//    }
-//    
-//    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        return self
-//        
-//    }
-//}
-
 

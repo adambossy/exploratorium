@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Graph View Controller-->
@@ -17,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7k9-wH-xOZ" userLabel="Graph View" customClass="GraphView" customModule="Exploratorium" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7k9-wH-xOZ" userLabel="Graph View" customClass="GraphView" customModule="Exploratorium" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -25,9 +24,10 @@
                                     <outletCollection property="gestureRecognizers" destination="7vY-y4-zOt" appends="YES" id="oCP-QX-ko8"/>
                                 </connections>
                             </scrollView>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x1p-oV-WvL">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter Name" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="36" translatesAutoresizingMaskIntoConstraints="NO" id="x1p-oV-WvL" userLabel="Title Text Field">
                                 <rect key="frame" x="0.0" y="285" width="600" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Iof-d5-oLo"/>
@@ -36,18 +36,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7k9-wH-xOZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="7vW-nh-HXm"/>
-                            <constraint firstItem="x1p-oV-WvL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="SKz-tj-a81"/>
-                            <constraint firstItem="7k9-wH-xOZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="U9M-m1-t3J"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7k9-wH-xOZ" secondAttribute="bottom" id="ZlT-KN-Tbx"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7k9-wH-xOZ" secondAttribute="trailing" id="pkb-Tl-xv7"/>
+                            <constraint firstItem="x1p-oV-WvL" firstAttribute="bottom" secondItem="7k9-wH-xOZ" secondAttribute="bottom" id="1Jg-YF-G2v"/>
+                            <constraint firstItem="7k9-wH-xOZ" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="K6d-GU-2Be"/>
+                            <constraint firstItem="7k9-wH-xOZ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="QBK-ar-yRP"/>
+                            <constraint firstAttribute="centerY" secondItem="7k9-wH-xOZ" secondAttribute="centerY" id="RAH-6X-MaG"/>
+                            <constraint firstAttribute="centerX" secondItem="7k9-wH-xOZ" secondAttribute="centerX" id="gZc-9G-lvo"/>
+                            <constraint firstItem="x1p-oV-WvL" firstAttribute="width" secondItem="7k9-wH-xOZ" secondAttribute="width" id="kh0-6J-oDh"/>
                             <constraint firstAttribute="centerX" secondItem="x1p-oV-WvL" secondAttribute="centerX" id="uPQ-rK-lko"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="x1p-oV-WvL" secondAttribute="trailing" constant="-16" id="unC-v1-kdf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="graphView" destination="7k9-wH-xOZ" id="ARx-vi-Off"/>
                         <outlet property="titleTextField" destination="x1p-oV-WvL" id="rJ2-4a-vRS"/>
+                        <outlet property="titleTextFieldBottomConstraint" destination="1Jg-YF-G2v" id="3Vo-2H-LWb"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="3ST-bW-dh2"/>
                         <segue destination="IHM-dz-MQl" kind="custom" identifier="ShowNotes" id="Ndu-YK-pMq"/>
                     </connections>

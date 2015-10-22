@@ -70,7 +70,7 @@ class NodeView : UIView {
         var textStyle = NSMutableParagraphStyle()
         textStyle.alignment = .Center
         let titleAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(16.0),
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(20.0),
             NSForegroundColorAttributeName: UIColor.blackColor(),
             NSParagraphStyleAttributeName: textStyle
         ]

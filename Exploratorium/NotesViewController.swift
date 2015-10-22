@@ -24,18 +24,18 @@ class NotesViewController : UITableViewController { //, UIViewControllerTransiti
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int {
-        return 1
+        return 4
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Section \(section)"
+        return nil;
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier( "NoteCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell : NoteCell = tableView.dequeueReusableCellWithIdentifier( "NoteCell", forIndexPath: indexPath) as! NoteCell
         
         // Configure the cell...
-        cell.textLabel!.text = "Section \(indexPath.section) Row \(indexPath.row)"
+        cell.noteLabel.text = "Section \(indexPath.section) Row \(indexPath.row)"
 
         return cell
     }

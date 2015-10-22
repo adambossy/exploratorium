@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7k9-wH-xOZ" userLabel="Graph View" customClass="GraphView" customModule="Exploratorium" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7k9-wH-xOZ" userLabel="Graph View" customClass="GraphView" customModule="Exploratorium" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -24,9 +24,9 @@
                                     <outletCollection property="gestureRecognizers" destination="7vY-y4-zOt" appends="YES" id="oCP-QX-ko8"/>
                                 </connections>
                             </scrollView>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter Name" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="36" translatesAutoresizingMaskIntoConstraints="NO" id="x1p-oV-WvL" userLabel="Title Text Field">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Enter Name" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="36" translatesAutoresizingMaskIntoConstraints="NO" id="x1p-oV-WvL" userLabel="Title Text Field">
                                 <rect key="frame" x="0.0" y="285" width="600" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93793402777777779" green="0.93793402777777779" blue="0.93793402777777779" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -65,7 +65,7 @@
         <scene sceneID="24q-op-8UN">
             <objects>
                 <viewController id="IHM-dz-MQl" customClass="NotesViewController" customModule="Exploratorium" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1U7-uL-4vx">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="1U7-uL-4vx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,13 +86,33 @@
                             </items>
                         </navigationBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" textLabel="guc-Hc-l4y" rowHeight="88" style="IBUITableViewCellStyleDefault" id="OZI-LM-QAD">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoteCell" textLabel="guc-Hc-l4y" rowHeight="88" style="IBUITableViewCellStyleDefault" id="OZI-LM-QAD" customClass="NoteCell" customModule="Exploratorium" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OZI-LM-QAD" id="hpA-xf-QyG">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="OZI-LM-QAD" id="hpA-xf-QyG">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="guc-Hc-l4y">
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9h-ko-vmo">
+                                            <rect key="frame" x="10" y="10" width="580" height="77"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TH-7n-kZp">
+                                                    <rect key="frame" x="10" y="5" width="560" height="67"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.54453520150000001" green="0.74606378259999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="9TH-7n-kZp" firstAttribute="top" secondItem="Z9h-ko-vmo" secondAttribute="top" constant="5" id="2M0-mN-vHQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="9TH-7n-kZp" secondAttribute="trailing" constant="20" id="4va-2h-isU"/>
+                                                <constraint firstItem="9TH-7n-kZp" firstAttribute="leading" secondItem="Z9h-ko-vmo" secondAttribute="leading" constant="20" id="Jol-LE-OVk"/>
+                                                <constraint firstAttribute="centerY" secondItem="9TH-7n-kZp" secondAttribute="centerY" id="PAT-9F-yH3"/>
+                                                <constraint firstAttribute="centerX" secondItem="9TH-7n-kZp" secondAttribute="centerX" id="PcJ-Qt-cPP"/>
+                                                <constraint firstAttribute="bottom" secondItem="9TH-7n-kZp" secondAttribute="bottom" constant="5" id="sLS-xs-sLe"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="guc-Hc-l4y">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -100,6 +120,10 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="noteLabel" destination="9TH-7n-kZp" id="QZD-u7-kvH"/>
+                                    <outlet property="styleView" destination="Z9h-ko-vmo" id="KDm-4L-GES"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>

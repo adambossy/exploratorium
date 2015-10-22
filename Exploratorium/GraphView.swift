@@ -65,8 +65,8 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
         self.addSubview(containerView)
 
         // NOTE: Zooming in not interesting, zooming out is. Fix scale to reflect that.
-        minimumZoomScale = 0.1
-        maximumZoomScale = 5.0
+        minimumZoomScale = 0.5
+        maximumZoomScale = 2.0
         zoomScale = 1.0
     }
 

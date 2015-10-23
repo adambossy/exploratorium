@@ -56,7 +56,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
     // ***
     // MARK: Title editing
     
-    func nodeCreated(#node: NodeView) {
+    func nodeCreated(node: NodeView) {
         node.delegate = self
         titleTextField.hidden = false
         titleTextField.becomeFirstResponder()
@@ -87,7 +87,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
         if segue.identifier == "ShowNotes" {
             if let n = selectedNode {
                 let notesViewController = segue.destinationViewController as! NotesViewController
-                notesViewController.node = selectedNode
+                notesViewController.node = n
                 notesViewController.transitioningDelegate = self
             }
         }

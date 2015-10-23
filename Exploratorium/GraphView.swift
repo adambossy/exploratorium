@@ -9,7 +9,7 @@
 import UIKit
 
 protocol NodeCreatedDelegate {
-    func nodeCreated(#node: NodeView)
+    func nodeCreated(node: NodeView)
 }
 
 class GraphView: UIScrollView, UIScrollViewDelegate {
@@ -22,7 +22,7 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
     var newestNodeView : NodeView?
     var containerView : UIView!
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         delegate = self
     }
@@ -73,8 +73,8 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
 //            nodeView.delegate = nodeCreatedDelegate // Seems hacky
             newestNodeView = nodeView
             containerView.addSubview(nodeView)
-            println("Created node! Tiny Rick!")
-            nodeCreatedDelegate.nodeCreated(node: nodeView)
+            print("Created node! Tiny Rick!")
+            nodeCreatedDelegate.nodeCreated(nodeView)
         }
     }
 }

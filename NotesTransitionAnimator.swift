@@ -16,7 +16,7 @@ class NotesTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     // animate a change from one viewcontroller to another
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        let container = transitionContext.containerView()
+        let container = transitionContext.containerView()!
 
         let notesView = transitionContext.viewForKey(presenting ? UITransitionContextToViewKey : UITransitionContextFromViewKey)!
         let graphView = transitionContext.viewForKey(presenting ? UITransitionContextFromViewKey : UITransitionContextToViewKey)!
@@ -56,8 +56,8 @@ class NotesTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         UIView.animateWithDuration(
             duration,
-            delay: 0,
-            options: nil,
+            delay: NSTimeInterval(0),
+            options: [],
             animations: {
                 notesView.transform = self.presenting ? CGAffineTransformIdentity : scaleTransform
                 notesView.center = CGPoint(x: CGRectGetMidX(finalFrame),
@@ -65,13 +65,14 @@ class NotesTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 notesView.alpha = self.presenting ? 1.0 : 0.0
             }, completion: { finished in
                 // tell our transitionContext object that we've finished animating
+                
                 transitionContext.completeTransition(true)
             }
         )
         
     }
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.4
     }
     

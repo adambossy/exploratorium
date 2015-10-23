@@ -36,7 +36,7 @@ class NoteCell : UITableViewCell {
         let views = ["styleView" : styleView]
         let formatString = "|-10-[styleView]-10-|"
 
-        let constraints = NSLayoutConstraint.constraintsWithVisualFormat(formatString, options:nil , metrics: nil, views: views)
+        let constraints = NSLayoutConstraint.constraintsWithVisualFormat(formatString, options: [], metrics: nil, views: views)
 
         NSLayoutConstraint.activateConstraints(constraints)
     }

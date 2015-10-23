@@ -77,8 +77,8 @@ class NodeView : UIView {
         let titleRect = CGRectMake(0, NODE_SIZE + LINE_WIDTH + TEXT_MARGIN, NODE_SIZE + LINE_WIDTH, TEXT_HEIGHT)
         self.title?.drawInRect(titleRect, withAttributes: titleAttributes)
     }
-
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let d = delegate {
             d.nodeTapped(self)
         }

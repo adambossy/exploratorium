@@ -10,8 +10,9 @@ import UIKit
 
 class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegate, NodeCreatedDelegate, UIViewControllerTransitioningDelegate {
 
+    let DEBUG = true
     let notesTransitionAnimator = NotesTransitionAnimator()
-    
+
     var selectedNode: NodeView?
 
     @IBOutlet weak var graphView: GraphView!
@@ -22,6 +23,11 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         graphView.nodeCreatedDelegate = self
+        
+        if DEBUG {
+            let color = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
+            nodeTapped(NodeView(x: 0, y: 0, title: nil, color: color))
+        }
     }
 
     func keyboardWillShow(notification: NSNotification) {
@@ -55,7 +61,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
 
     // ***
     // MARK: Title editing
-    
+
     func nodeCreated(node: NodeView) {
         node.delegate = self
         titleTextField.hidden = false
@@ -77,7 +83,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
 
     // ***
     // MARK: Node tapping & view controller transition
-    
+
     func nodeTapped(node: NodeView) {
         selectedNode = node
         performSegueWithIdentifier("ShowNotes", sender: nil)

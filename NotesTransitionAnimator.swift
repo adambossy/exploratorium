@@ -11,7 +11,7 @@ import UIKit
 class NotesTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
     var presenting  = true
-    var originFrame = CGRect.zeroRect
+    var originFrame = CGRect.zero
 
     // animate a change from one viewcontroller to another
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -20,7 +20,7 @@ class NotesTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
         let notesView = transitionContext.viewForKey(presenting ? UITransitionContextToViewKey : UITransitionContextFromViewKey)!
         let graphView = transitionContext.viewForKey(presenting ? UITransitionContextFromViewKey : UITransitionContextToViewKey)!
-        
+
         let initialFrame = presenting ? originFrame : notesView.frame
         let finalFrame = presenting ? notesView.frame : originFrame
 

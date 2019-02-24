@@ -14,14 +14,18 @@ class NoteCell : UITableViewCell {
         (155, 196, 226),
     ]
 
-    @IBOutlet weak var styleView : UIView!
-    @IBOutlet weak var noteLabel : UILabel!
+    var editable : Bool = true
 
+    @IBOutlet weak var noteLabel : UILabel!
+    @IBOutlet weak var noteTextField : UITextField!
+
+//    override func init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        editable = true
+//    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        self.styleView.layer.cornerRadius = 10
-        self.styleView.clipsToBounds = true
 
         let index = Int(arc4random_uniform(UInt32(RGB_VALUES.count)))
         let color = UIColor(
@@ -29,15 +33,15 @@ class NoteCell : UITableViewCell {
             green: RGB_VALUES[index].1  / 255.0,
             blue: RGB_VALUES[index].2 / 255.0,
             alpha: 1.0)
-        self.styleView.backgroundColor = color
-        self.styleView.layer.borderColor = UIColor.blackColor().CGColor
-        self.styleView.layer.borderWidth = 4
+        self.backgroundColor = color
 
-        let views = ["styleView" : styleView]
-        let formatString = "|-10-[styleView]-10-|"
+        self.noteLabel.hidden = editable
+        self.noteTextField.hidden = !editable
+
+        let views = ["noteTextField" : noteTextField]
+        let formatString = "|-10-[noteTextField]-10-|"
 
         let constraints = NSLayoutConstraint.constraintsWithVisualFormat(formatString, options: [], metrics: nil, views: views)
-
         NSLayoutConstraint.activateConstraints(constraints)
     }
 }

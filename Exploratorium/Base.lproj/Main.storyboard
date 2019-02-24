@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Graph View Controller-->
@@ -83,49 +83,39 @@
                                             <segue destination="BYZ-38-t0r" kind="custom" identifier="DismissNotes" customClass="DismissSegue" customModule="Exploratorium" customModuleProvider="target" id="1fb-tQ-18Y"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" title="+" id="dIR-GK-bR6">
+                                        <connections>
+                                            <action selector="addNote" destination="IHM-dz-MQl" id="U1V-tx-95c"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </navigationItem>
                             </items>
                         </navigationBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoteCell" textLabel="guc-Hc-l4y" rowHeight="88" style="IBUITableViewCellStyleDefault" id="OZI-LM-QAD" customClass="NoteCell" customModule="Exploratorium" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="66" width="600" height="88"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoteCell" textLabel="guc-Hc-l4y" rowHeight="90" style="IBUITableViewCellStyleDefault" id="OZI-LM-QAD" customClass="NoteCell" customModule="Exploratorium" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="66" width="600" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="OZI-LM-QAD" id="hpA-xf-QyG">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9h-ko-vmo">
-                                            <rect key="frame" x="10" y="10" width="580" height="77"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TH-7n-kZp">
-                                                    <rect key="frame" x="10" y="5" width="560" height="67"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.54453520150000001" green="0.74606378259999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="9TH-7n-kZp" firstAttribute="top" secondItem="Z9h-ko-vmo" secondAttribute="top" constant="5" id="2M0-mN-vHQ"/>
-                                                <constraint firstAttribute="trailing" secondItem="9TH-7n-kZp" secondAttribute="trailing" constant="20" id="4va-2h-isU"/>
-                                                <constraint firstItem="9TH-7n-kZp" firstAttribute="leading" secondItem="Z9h-ko-vmo" secondAttribute="leading" constant="20" id="Jol-LE-OVk"/>
-                                                <constraint firstAttribute="centerY" secondItem="9TH-7n-kZp" secondAttribute="centerY" id="PAT-9F-yH3"/>
-                                                <constraint firstAttribute="centerX" secondItem="9TH-7n-kZp" secondAttribute="centerX" id="PcJ-Qt-cPP"/>
-                                                <constraint firstAttribute="bottom" secondItem="9TH-7n-kZp" secondAttribute="bottom" constant="5" id="sLS-xs-sLe"/>
-                                            </constraints>
-                                        </view>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="guc-Hc-l4y">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="88"/>
+                                            <rect key="frame" x="15" y="0.0" width="570" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7u4-kN-i3h">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="90"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="noteLabel" destination="9TH-7n-kZp" id="QZD-u7-kvH"/>
-                                    <outlet property="styleView" destination="Z9h-ko-vmo" id="KDm-4L-GES"/>
+                                    <outlet property="noteLabel" destination="guc-Hc-l4y" id="VoL-ld-l6M"/>
+                                    <outlet property="noteTextField" destination="7u4-kN-i3h" id="Sp5-8Z-eYq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -136,6 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vPj-fc-2hZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="248" y="257"/>
         </scene>
     </scenes>
 </document>

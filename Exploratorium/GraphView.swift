@@ -10,6 +10,7 @@ import UIKit
 
 protocol NodeCreatedDelegate {
     func nodeCreated(node: NodeView)
+//    func debugNodeCreated(node: NodeView)
 }
 
 class GraphView: UIScrollView, UIScrollViewDelegate {
@@ -17,6 +18,9 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
     let RGB_VALUES : [(CGFloat, CGFloat, CGFloat)] = [
         (155, 196, 226),
         ]
+
+//    var DEBUG : Bool = true
+//    var debugNode: NodeView!
 
     var nodeCreatedDelegate : NodeCreatedDelegate!
     var newestNodeView : NodeView?
@@ -48,6 +52,19 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
         minimumZoomScale = 0.5
         maximumZoomScale = 2.0
         zoomScale = 1.0
+
+        // DEBUG NODE
+//        if DEBUG {
+//            let color = UIColor(
+//                red: RGB_VALUES[0].0 / 255.0,
+//                green: RGB_VALUES[0].1  / 255.0,
+//                blue: RGB_VALUES[0].2 / 255.0,
+//                alpha: 1.0)
+//            debugNode = NodeView(x: 0, y: 0, title: nil, color: color)
+//            newestNodeView = debugNode
+//            containerView.addSubview(debugNode)
+//            nodeCreatedDelegate.debugNodeCreated(debugNode)
+//        }
     }
 
     override func setNeedsDisplay() {

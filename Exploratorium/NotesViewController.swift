@@ -21,24 +21,25 @@ class NotesViewController : UITableViewController { //, UIViewControllerTransiti
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+        tableView.contentInset = UIEdgeInsets.init(top: 20, left: 0, bottom: 0, right: 0)
         navigationBar.topItem?.title = node.title
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
+
         return data.count
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return nil;
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell : NoteCell = tableView.dequeueReusableCellWithIdentifier( "NoteCell", forIndexPath: indexPath) as! NoteCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell : NoteCell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
         
         // Configure the cell...
         cell.noteLabel.text = data[indexPath.row]
@@ -52,8 +53,8 @@ class NotesViewController : UITableViewController { //, UIViewControllerTransiti
     func animate(maybeCell: UITableViewCell?) {
         if let cell = maybeCell {
             let targetFrame = cell.frame
-            cell.frame = CGRectMake(self.tableView.frame.width / 2, cell.frame.origin.y, 1, 1)
-            UIView.animateWithDuration(1.0) {
+            cell.frame = CGRect(x: self.tableView.frame.width / 2, y: cell.frame.origin.y, width: 1, height: 1)
+            UIView.animate(withDuration: 1.0) {
                 cell.frame = targetFrame
             }
         }
@@ -63,8 +64,8 @@ class NotesViewController : UITableViewController { //, UIViewControllerTransiti
         data.append("New row!")
         self.tableView.reloadData()
         
-        let newCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: data.count - 1, inSection: 0))
-        self.animate(newCell)
+        let newCell = self.tableView.cellForRow(at: NSIndexPath(row: data.count - 1, section: 0) as IndexPath)
+        self.animate(maybeCell: newCell)
 //        let numRows = tableView.numberOfRowsInSection(1) // Only 1 section. Okay to hard-code
 //        let indexPath = NSIndexPath(forRow: numRows, inSection: 1)
 //        tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)

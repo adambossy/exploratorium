@@ -21,26 +21,26 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         graphView.nodeCreatedDelegate = self
         
         if DEBUG {
             let color = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
-            nodeTapped(NodeView(x: 0, y: 0, title: nil, color: color))
+            nodeTapped(node: NodeView(x: 0, y: 0, title: nil, color: color))
         }
     }
 
-    func keyboardWillShow(notification: NSNotification) {
-        let keyboardFrame = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 
-        UIView.animateWithDuration(0.1, animations: { () -> Void in
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.titleTextFieldBottomConstraint.constant = -1 * keyboardFrame.size.height
         })
     }
 
     // we override this method to manage what style status bar is shown
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return self.presentingViewController == nil ? UIStatusBarStyle.Default : UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.presentingViewController == nil ? UIStatusBarStyle.default : UIStatusBarStyle.lightContent
     }
 
     // ***
@@ -48,7 +48,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let n = selectedNode {
-            notesTransitionAnimator.originFrame = n.superview!.convertRect(n.frame, toView: nil)
+            notesTransitionAnimator.originFrame = n.superview!.convert(n.frame, to: nil)
         }
         notesTransitionAnimator.presenting = true
         return notesTransitionAnimator
@@ -64,20 +64,20 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
 
     func nodeCreated(node: NodeView) {
         node.delegate = self
-        titleTextField.hidden = false
+        titleTextField.isHidden = false
         titleTextField.becomeFirstResponder()
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let nodeView = graphView!.newestNodeView {
             nodeView.title = textField.text
         }
         textField.text = ""
-        textField.hidden = true
+        textField.isHidden = true
         textField.endEditing(true)
         graphView.becomeFirstResponder()
         graphView.setNeedsDisplay()
-        graphView.userInteractionEnabled = true
+        graphView.isUserInteractionEnabled = true
         return false
     }
 
@@ -86,13 +86,13 @@ class GraphViewController: UIViewController, UITextFieldDelegate, NodeTapDelegat
 
     func nodeTapped(node: NodeView) {
         selectedNode = node
-        performSegueWithIdentifier("ShowNotes", sender: nil)
+        performSegue(withIdentifier: "ShowNotes", sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowNotes" {
             if let n = selectedNode {
-                let notesViewController = segue.destinationViewController as! NotesViewController
+                let notesViewController = segue.destination as! NotesViewController
                 notesViewController.node = n
                 notesViewController.transitioningDelegate = self
             }

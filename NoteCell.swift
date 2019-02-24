@@ -35,13 +35,13 @@ class NoteCell : UITableViewCell {
             alpha: 1.0)
         self.backgroundColor = color
 
-        self.noteLabel.hidden = editable
-        self.noteTextField.hidden = !editable
+        self.noteLabel.isHidden = editable
+        self.noteTextField.isHidden = !editable
 
         let views = ["noteTextField" : noteTextField]
         let formatString = "|-10-[noteTextField]-10-|"
 
-        let constraints = NSLayoutConstraint.constraintsWithVisualFormat(formatString, options: [], metrics: nil, views: views)
-        NSLayoutConstraint.activateConstraints(constraints)
+        let constraints = NSLayoutConstraint.constraints(withVisualFormat: formatString, options: [], metrics: nil, views: views as [String : Any])
+        NSLayoutConstraint.activate(constraints)
     }
 }

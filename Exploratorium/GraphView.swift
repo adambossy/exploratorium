@@ -34,18 +34,18 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        let containerSize = CGSizeMake(
-            screenSize.width * 10,
-            screenSize.height * 10)
+        let screenSize: CGRect = UIScreen.main.bounds
+        let containerSize = CGSize(
+            width: screenSize.width * 10,
+            height: screenSize.height * 10)
 
         self.contentSize = containerSize
-        self.contentOffset = CGPointMake(
-            (containerSize.width / 2) - (screenSize.width / 2),
-            (containerSize.height / 2) - (screenSize.height / 2))
+        self.contentOffset = CGPoint(
+            x: (containerSize.width / 2) - (screenSize.width / 2),
+            y: (containerSize.height / 2) - (screenSize.height / 2))
 
         containerView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size:containerSize))
-        containerView.backgroundColor = UIColor.whiteColor()
+        containerView.backgroundColor = UIColor.white
         self.addSubview(containerView)
 
         // NOTE: Zooming in not interesting, zooming out is. Fix scale to reflect that.
@@ -77,9 +77,9 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
     }
 
     @IBAction func longTap(sender: UILongPressGestureRecognizer) {
-        userInteractionEnabled = false
-        if (UIGestureRecognizerState.Began == sender.state) {
-            let location = sender.locationOfTouch(0, inView: containerView)
+        isUserInteractionEnabled = false
+        if (UIGestureRecognizer.State.began == sender.state) {
+            let location = sender.location(ofTouch: 0, in: containerView)
             let index = Int(arc4random_uniform(UInt32(RGB_VALUES.count)))
             let color = UIColor(
                 red: RGB_VALUES[index].0 / 255.0,
@@ -91,7 +91,7 @@ class GraphView: UIScrollView, UIScrollViewDelegate {
             newestNodeView = nodeView
             containerView.addSubview(nodeView)
             print("Created node! Tiny Rick!")
-            nodeCreatedDelegate.nodeCreated(nodeView)
+            nodeCreatedDelegate.nodeCreated(node: nodeView)
         }
     }
 }

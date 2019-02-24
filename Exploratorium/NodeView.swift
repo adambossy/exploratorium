@@ -35,17 +35,17 @@ class NodeView : UIView {
             y: y - (LINE_WIDTH / 2),
             width: NODE_SIZE + LINE_WIDTH,
             height: NODE_SIZE + TEXT_MARGIN + TEXT_HEIGHT + LINE_WIDTH)
-        UIView.animateWithDuration(
-            0.5,
+        UIView.animate(
+            withDuration: 0.5,
             delay: 0,
             usingSpringWithDamping: 0.2,
             initialSpringVelocity: 0.0,
-            options: .CurveEaseInOut,
+            options: .curveEaseInOut,
             animations: {
                 self.frame = targetFrame
             },
             completion: { (finished: Bool) in })
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -53,34 +53,39 @@ class NodeView : UIView {
     }
     
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let nodeRect = CGRect(
             x: (LINE_WIDTH / 2),
             y: (LINE_WIDTH / 2),
             width: NODE_SIZE,
             height: NODE_SIZE)
-        var path = UIBezierPath(ovalInRect: nodeRect)
+        let path = UIBezierPath(ovalIn: nodeRect)
         self.color.setFill()
         path.fill()
         
-        UIColor.blackColor().setStroke()
+        UIColor.black.setStroke()
         path.lineWidth = LINE_WIDTH
         path.stroke()
         
-        var textStyle = NSMutableParagraphStyle()
-        textStyle.alignment = .Center
+        let textStyle = NSMutableParagraphStyle()
+        textStyle.alignment = .center
         let titleAttributes = [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(20.0),
-            NSForegroundColorAttributeName: UIColor.blackColor(),
-            NSParagraphStyleAttributeName: textStyle
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20.0),
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.paragraphStyle: textStyle
         ]
-        let titleRect = CGRectMake(0, NODE_SIZE + LINE_WIDTH + TEXT_MARGIN, NODE_SIZE + LINE_WIDTH, TEXT_HEIGHT)
-        self.title?.drawInRect(titleRect, withAttributes: titleAttributes)
+        let titleRect = CGRect(
+            x: 0,
+            y: NODE_SIZE + LINE_WIDTH + TEXT_MARGIN,
+            width: NODE_SIZE + LINE_WIDTH,
+            height: TEXT_HEIGHT
+        )
+        self.title?.draw(in: titleRect, withAttributes: titleAttributes)
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let d = delegate {
-            d.nodeTapped(self)
+            d.nodeTapped(node: self)
         }
     }
 }
